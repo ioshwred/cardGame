@@ -21,10 +21,10 @@ const addModule = async (req: Request, res: Response): Promise<void> => {
             identifier: body.identifier,
             status: body.status,
         }) 
-
+        //res.status(201).json({ message: 'Module added'})
         const newModule: IModule = await module.save()
         const allModules: IModule[] = await Module.find()
-
+        
         res.status(201).json({ message: 'Module added', module: newModule, modules: allModules })
     } catch (error) {
         throw error

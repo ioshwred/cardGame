@@ -1,14 +1,16 @@
 import express, { Express } from 'express'
+import bp from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import moduleRoutes from './routes'
+import routes from './routes'
+import { PORT } from "./constants/api.constants"
 
 const app: Express = express()
 
-const PORT: string | number = process.env.PORT || 4000
-
 app.use(cors())
-app.use(moduleRoutes)
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
+app.use(routes)
 
 const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.tgcts.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 const options = { useNewUrlParser: true, useUnifiedTopology: true }
