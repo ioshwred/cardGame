@@ -1,5 +1,7 @@
 //.gitignore
-
+#api ignore
 api/node_modules
 api/package-lock.json
 api/dist
+#client ignore
+client/node_modules
